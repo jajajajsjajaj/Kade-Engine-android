@@ -370,6 +370,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
+			case 'light-it-up':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('light-it-up/lightDialogue'));	
 		}
 
 		//defaults if no stage was found in chart
@@ -740,6 +742,16 @@ class PlayState extends MusicBeatState
 						stageCurtains.active = false;
 	
 						add(stageCurtains);
+				}					
+			case 'light-it-up' | 'ruckus' | 'target-practice'
+			{		
+				defaultCamZoom = 0.8;
+				curStage = 'swordarena'
+				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('swordfight'));	
+				bg.antialiasing = true;
+				bg.scrollFactor.set(0.9, 0.9);
+				bg.active = false;
+				add(bg);
 				}
 			default:
 			{
@@ -838,6 +850,8 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case "matt":
+			dad.y += 300;
 		}
 
 
@@ -1153,6 +1167,8 @@ class PlayState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
 				case 'thorns':
+					schoolIntro(doof);
+				case 'light-it-up':
 					schoolIntro(doof);
 				default:
 					startCountdown();

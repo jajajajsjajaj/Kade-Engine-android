@@ -94,13 +94,19 @@ class DialogueBox extends FlxSpriteGroup
 				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
+
+			case 'light-it-up':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);					box.animation.addByIndices('normal', 'speech bubble normal', [4], "", 24);
+				box.y = FlxG.height - box.height + 50;					box.x = box.x - 20;	
 		}
 
 		this.dialogueList = dialogueList;
 		
 		if (!hasDialog)
 			return;
-		
+	{	
 		portraitLeft = new FlxSprite(-20, 40);
 		portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
 		portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
@@ -118,6 +124,27 @@ class DialogueBox extends FlxSpriteGroup
 		portraitRight.scrollFactor.set();
 		add(portraitRight);
 		portraitRight.visible = false;
+	}
+		if (PlayState.SONG.song.toLowerCase()=='light-it-up')
+			{
+				portraitLeft = new FlxSprite(-20, 40);
+				portraitLeft.frames = Paths.getSparrowAtlas('matt-portrait');
+				portraitLeft.animation.addByPrefix('enter', 'matt portrait', 24, false);
+				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
+			
+				portraitRight = new FlxSprite(0, 40);
+				portraitRight.frames = Paths.getSparrowAtlas('boyfriend-portrait');
+				portraitRight.animation.addByPrefix('enter', 'boyfriend-portrait', 24, false);
+				portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.6));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
+			}
 		
 		box.animation.play('normalOpen');
 		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
