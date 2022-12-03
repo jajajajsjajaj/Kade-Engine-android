@@ -751,7 +751,9 @@ class PlayState extends MusicBeatState
 				bg.antialiasing = true;
 				bg.scrollFactor.set(0.9, 0.9);
 				bg.active = false;
-				add(bg);
+				add(bg); 
+                                    }
+
 				}
 			default:
 			{
