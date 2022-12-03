@@ -742,7 +742,9 @@ class PlayState extends MusicBeatState
 						stageCurtains.active = false;
 	
 						add(stageCurtains);
-				}					
+				}
+	
+}	
 			case 'light-it-up' | 'ruckus' | 'target-practice'
 			{		
 				defaultCamZoom = 0.8;
